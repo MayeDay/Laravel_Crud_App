@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use Exception;
 use GuzzleHttp\Psr7\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -33,8 +34,17 @@ class EmployeeController extends Controller
     
 
     public function addEmployee(Request $request){
+
+      try{
       $employee = Employee::create($request->all());
-      return redirect('/');
+
+      }catch(Exception $e){
+        return redirect("/");
+
+      }
+
+      return redirect("/");
+
     }
 
 
